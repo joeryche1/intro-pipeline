@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  libraries {
+    lib("SharedLibs")
+  }
   stages {
     stage('Say Hello') {
       steps {
@@ -9,6 +12,11 @@ pipeline {
         echo "Hello ${params.Name}!"
       }
     }
+    stage('Shared Lib') {
+         steps {
+             helloWorld("Jenkins")
+         }
+      }
     stage('Get Kernel') {
       steps {
         script {
